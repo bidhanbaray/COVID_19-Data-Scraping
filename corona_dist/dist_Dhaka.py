@@ -32,9 +32,11 @@ pdfFileObj.close()
 #contentList = re.findall('(?ms)/S.+[0-9]+',content[82:])
 # print(content[82:])
 #print(contentList)
+startindex = contentList.index('Total')
+del contentList[0:startindex+1]
 
 contentDict = dict()
-i = 5;
+i = 0;
 while i<len(contentList)-1:
     contentDict[contentList[i].replace('\n','').lower()] = contentList[i+1]
     i+=2
