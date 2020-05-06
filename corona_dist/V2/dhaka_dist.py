@@ -8,7 +8,11 @@ import re
 pdfFileObj = open('data_update.pdf','rb')
 pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
 #print(pdfReader.numPages)
-pageObj = pdfReader.getPage(1)
+try:
+    pageObj = pdfReader.getPage(1)
+except:
+    print("Information update on Dhaka not available.")
+    exit()
 #print(pageObj.extractText())
 content = pageObj.extractText()
 contentList = content.split('\n \n')
@@ -30,7 +34,7 @@ api_key = 42
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
-
+print('Updating! Please Wait!')
 features = []
 for location,affected in contentDict.items():
     parms = dict()
